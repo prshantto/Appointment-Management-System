@@ -9,5 +9,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/bookappointment", appointmentController.bookappointment);
+router.post("/checkin", appointmentController.checkIn);
 
 module.exports = router;

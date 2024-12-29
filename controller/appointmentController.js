@@ -1,5 +1,4 @@
 const Appointment = require("../models/Appointments.model.js");
-const newAppointments = require("../models/Appointments.model.js");
 
 const appointmentService = require("../services/appointments.service.js");
 
@@ -19,4 +18,18 @@ module.exports.bookappointment = async function (req, res) {
   });
 
   res.status(200).send("Appointment Booked successfully");
+};
+
+module.exports.checkIn = async function (req, res) {
+  const appointmentId = req.query.id;
+  const patientCheckIn = await Appointment.find({ _id: appointmentId });
+
+  patientCheckIn.forEach(async (patient) => {
+    patient.status = "completed";
+    patient.isCheckedIn = true;
+    await patient.save();
+    console.log("Patient CheckedIn");
+  });
+
+  res.send("Patient CheckedIn Successfully");
 };
