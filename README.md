@@ -21,7 +21,7 @@ This project is a backend system designed to efficiently manage missed appointme
 1. **Clone the repository**:
 
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/prshantto/Appointment-Management-System.git
    ```
 
 2. **Install dependencies**:
@@ -85,10 +85,20 @@ This project is a backend system designed to efficiently manage missed appointme
 - **Appointment Model**:
   ```javascript
   const appointmentSchema = new mongoose.Schema({
-    patient: String,
-    time: Date,
-    isCheckedIn: Boolean,
-    status: String,
+    name: String,
+    email: String,
+    phone: String,
+    doctor: String,
+    time: String,
+    isCheckedIn: {
+      type: Boolean,
+      default: false,
+    },
+    status: {
+      type: String,
+      enum: ["confirmed", "cancelled", "No Show - Rescheduled", "completed"],
+      default: "confirmed",
+    },
   });
   const Appointment = mongoose.model("Appointment", appointmentSchema);
   ```
