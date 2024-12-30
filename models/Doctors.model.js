@@ -9,10 +9,7 @@ for (let hour = 10; hour < 18; hour++) {
 const doctorSchema = new mongoose.Schema({
   name: String,
   post: String,
-  timeSlots: {
-    type: [String],
-    default: timeSlots,
-  },
+  bookedtimeSlots: [String],
 });
 
 const Doctor = mongoose.model("Doctor", doctorSchema);
